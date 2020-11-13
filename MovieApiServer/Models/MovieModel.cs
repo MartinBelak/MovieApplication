@@ -7,7 +7,6 @@ namespace MoviesAPIServer.Models
 {
     public class MovieModel
     {
-
         public int MovieId { get; set; }
         public string Title { get; set; }
         public DateTime Duration { get; set; }
