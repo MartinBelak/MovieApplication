@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -20,10 +21,7 @@ namespace MoviesAPIServer.Controllers
         {
             var Movie = new MovieModel();
 
-            //ToDO change this 
-            string connectionString = @"Server=tcp:uniqeservername.database.windows.net,1433;Initial Catalog=MoviesDB;User Id=AdminLogin;Password=AdminPassword123;";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString()))
             {
                 conn.Open();
                 var query = "Select * from [dbo].Movie";
@@ -37,7 +35,7 @@ namespace MoviesAPIServer.Controllers
                 }
 
                 conn.Close();
-               
+
             }
 
             JsonSerializer js = new JsonSerializer();
