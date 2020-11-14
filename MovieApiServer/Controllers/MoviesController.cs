@@ -16,12 +16,12 @@ namespace MoviesAPIServer.Controllers
 {
     public class MoviesController : ApiController
     {
+        public string  connectionString = ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString();
         [HttpGet]
         public string AllMovies()
         {
             var Movie = new MovieModel();
-            var connectionString = ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString();
-
+                       
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
