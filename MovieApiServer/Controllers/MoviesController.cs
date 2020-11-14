@@ -20,8 +20,9 @@ namespace MoviesAPIServer.Controllers
         public string AllMovies()
         {
             var Movie = new MovieModel();
+            var connectionString = ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString();
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString()))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 var query = "Select * from [dbo].Movie";
