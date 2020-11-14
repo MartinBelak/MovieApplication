@@ -19,6 +19,7 @@ namespace MoviesAPIServer.Controllers
         public string AllMovies()
         {
             var Movie = new MovieModel();
+
             //ToDO change this 
             string connectionString = @"Server=tcp:uniqeservername.database.windows.net,1433;Initial Catalog=MoviesDB;User Id=AdminLogin;Password=AdminPassword123;";
 
