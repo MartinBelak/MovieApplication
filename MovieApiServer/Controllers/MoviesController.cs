@@ -17,10 +17,12 @@ namespace MoviesAPIServer.Controllers
     public class MoviesController : ApiController
     {
         public string  connectionString = ConfigurationManager.ConnectionStrings["MainConnectionString"].ToString();
+
         [HttpGet]
         public string AllMovies()
         {
-            var Movie = new MovieModel();
+           
+            List<MovieModel> Movies = new List<MovieModel>();
                        
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -31,19 +33,42 @@ namespace MoviesAPIServer.Controllers
                 SqlDataReader reader = comand.ExecuteReader();
                 while (reader.Read())
                 {
+                    var Movie = new MovieModel();
+                    Movie.MovieId = int.Parse(reader["MovieId"].ToString());
                     Movie.Title = reader["Title"].ToString();
-                    Movie.Plot = reader["Plot"].ToString();
+                    Movie.Year = int.Parse(reader["Year"].ToString());
+                    Movie.Genre = reader["Genre"].ToString();
+                    Movie.Duration = int.Parse(reader["Duration"].ToString());
+                    Movie.Country = reader["Country"].ToString();
+                    Movie.Language = reader["Language"].ToString();
+                    Movie.Director = reader["Director"].ToString();
+                    Movie.ProductionCompany = reader["ProductionCompany"].ToString();
+                    Movie.Actors = reader["Actors"].ToString();
+                    Movie.Description = reader["Description"].ToString();
+
+                    Movies.Add(Movie);
+
                 }
 
                 conn.Close();
-
             }
 
             JsonSerializer js = new JsonSerializer();
-            var Json = new JavaScriptSerializer().Serialize(Movie);
-
-           
+            var Json = new JavaScriptSerializer().Serialize(Movies);
+          
             return Json;
+        }
+
+        [HttpGet]
+        public string MovieById()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                conn.Close();
+            }
+                return "";
         }
     }
 }
