@@ -10,6 +10,7 @@ namespace MovieClient.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
