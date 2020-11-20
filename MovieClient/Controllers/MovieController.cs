@@ -1,10 +1,13 @@
 ﻿using MovieClient.Movies1;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace MovieClient.Controllers
 {
@@ -14,11 +17,11 @@ namespace MovieClient.Controllers
         public ActionResult AllMovies()
         {
 
-            string baseUrl = @"https://localhost:44328/api/Movies/";
+            string baseUrl = "https://localhost:44328/api/Movies/";
             string messageUrl = "AllMovies";
             string url = baseUrl + messageUrl;
             string json = "";
-            List<MovieModel> Movies = new List<MovieModel>();
+            
 
             RestRequest request = new RestRequest();
             request.Method = Method.GET;
@@ -47,8 +50,9 @@ namespace MovieClient.Controllers
 
                 throw ex;
             }
-            
 
+            
+            MovieModel[] Movies = JsonConvert.DeserializeObject<MovieModel[]>(json);
 
             return View(Movies);
         }

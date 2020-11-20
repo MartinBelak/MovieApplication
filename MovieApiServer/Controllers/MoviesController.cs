@@ -31,6 +31,7 @@ namespace MoviesAPIServer.Controllers
 
                 SqlCommand comand = new SqlCommand(query, conn);
                 SqlDataReader reader = comand.ExecuteReader();
+                int Count = 0;
                 while (reader.Read())
                 {
                     var Movie = new MovieModel();
@@ -45,7 +46,13 @@ namespace MoviesAPIServer.Controllers
                     Movie.ProductionCompany = reader["ProductionCompany"].ToString();
                     Movie.Actors = reader["Actors"].ToString();
                     Movie.Description = reader["Description"].ToString();
+                    Count++;
 
+                    if (Count>9)
+                    {
+                        break;
+                    }
+                    
                     Movies.Add(Movie);
 
                 }
@@ -60,7 +67,7 @@ namespace MoviesAPIServer.Controllers
         }
 
         [HttpGet]
-        public string MovieById()
+        public string MovieById(int MovieId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
