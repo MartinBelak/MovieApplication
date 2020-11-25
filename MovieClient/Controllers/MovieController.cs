@@ -5,6 +5,8 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -22,6 +24,7 @@ namespace MovieClient.Controllers
             string url = baseUrl + messageUrl;
             string json = "";
             
+            
 
             RestRequest request = new RestRequest();
             request.Method = Method.GET;
@@ -38,7 +41,12 @@ namespace MovieClient.Controllers
                 response = client.Execute(request);
                 if (response.IsSuccessful)
                 {
-                    json =response.Content;
+                    var test = JsonDocument.Parse(response.Content);
+                    json = test.RootElement.ToString();
+                    //response.con
+                    //json = response.Content.Replace("\\","");
+                    //json = json.Replace(@"\","");
+                    //json = json.Replace("\\", "");
                 }
                 else
                 {
@@ -52,7 +60,7 @@ namespace MovieClient.Controllers
             }
 
             
-            MovieModel[] Movies = JsonConvert.DeserializeObject<MovieModel[]>(json);
+            List<MovieModel> Movies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
 
             return View(Movies);
         }

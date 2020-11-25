@@ -48,7 +48,7 @@ namespace MoviesAPIServer.Controllers
                     Movie.Description = reader["Description"].ToString();
                     Count++;
 
-                    if (Count>9)
+                    if (Count>99)
                     {
                         break;
                     }

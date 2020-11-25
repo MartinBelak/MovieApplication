@@ -1,7 +1,16 @@
-﻿
+﻿@using MovieClient.Models;
+
+@model  List<MovieModel>
 @{
-    ViewBag.Title = "View";
+    var Movies = Model;
 }
 
 <h2>View</h2>
+
+
+
+    @foreach (var moive in Movies)
+    {
+        <h2>  @moive.Title</h2>
+    }
 
