@@ -1,4 +1,4 @@
-﻿using MovieClient.Movies1;
+﻿using MovieClient.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;

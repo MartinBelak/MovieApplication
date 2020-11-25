@@ -131,6 +131,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MovieModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Persistency\AzureDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
