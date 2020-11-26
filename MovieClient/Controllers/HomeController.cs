@@ -15,7 +15,7 @@ namespace MovieClient.Controllers
             return View();
         }
 
-        public ActionResult About(UserModel model)
+        public ActionResult About()
         {                   
             ViewBag.Message = "Your application description page.";
 
@@ -49,6 +49,21 @@ namespace MovieClient.Controllers
         {
             TempData["IsLoggedIn"] = null;            
             return View("./Index");
+        }
+
+        public ActionResult RegisterUser(UserModel model)
+        {
+            AzureDb.Instance.RegisterUser(model);
+            
+
+            return View("./Index");
+        }
+
+        public ActionResult RegisterUserPage()
+        {
+            ViewBag.Message = "Create new user";
+
+            return View();
         }
     }
 }

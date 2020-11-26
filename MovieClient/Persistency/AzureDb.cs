@@ -70,9 +70,40 @@ namespace MovieClient.Persistency
             }
             catch (SqlException e)
             {
-                System.Console.WriteLine(e);
+                Console.WriteLine(e);
             }
             return result;           
+        }
+
+        public void RegisterUser (UserModel user)
+        {
+            UserModel result = new UserModel();
+            var userName = user.UserName;
+            var gender = user.Gender;
+            var age = user.Age;
+            var nationality = user.Nationality;
+            var password = user.PasswordHash;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+                {   
+                    SqlCommand cmd = new SqlCommand("dbo.AddUser", conn);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("pUserName", userName);
+                    cmd.Parameters.AddWithValue("pGender", BitConverter.GetBytes(gender));
+                    cmd.Parameters.AddWithValue("pAge",age);
+                    cmd.Parameters.AddWithValue("pNationality", nationality);
+                    cmd.Parameters.AddWithValue("pPassword", password);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();                 
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }       
         }
     }
 }
