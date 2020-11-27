@@ -29,9 +29,9 @@
     else
     {
         var LoginMsg = TempData["LogginMessage"];
-        <h3>@LoginMsg</h3>
+        //<h3>@LoginMsg</h3>
         <h2>Please enter your Username and Password</h2>
-
+        
         <div class="row">
             <div class="col-md-9">
                 <form name="UserModel" method="POST" action="/Home/Login">
@@ -42,6 +42,7 @@
                         <input class="form-control" placeholder="Username" name="UserName" />
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
+                    <h5 style="color:red">@LoginMsg</h5>
                     <div class="form-group">
                         <label asp-for="Pwd" class="control-label"></label>
                         <input class="form-control" placeholder="Password" name="PasswordHash" type="password" />
