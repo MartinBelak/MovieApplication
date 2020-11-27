@@ -10,15 +10,10 @@ namespace MovieClient.Controllers
 {
     public class AuthenticationController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult Login(UserModel model)
         {
             var UserData = AzureDb.Instance.LoginUser(model);
-
             if (UserData.UserId == 0)
             {
                 TempData["IsLoggedIn"] = null;
@@ -30,6 +25,13 @@ namespace MovieClient.Controllers
                 TempData["IsLoggedIn"] = UserData.UserName + "," + UserData.UserId;
                 return View("./Index", UserData);
             }
+        }
+
+        public ActionResult RegisterUser(UserModel model)
+        {
+            AzureDb.Instance.RegisterUser(model);
+
+            return View("./Index");
         }
     }
 }
