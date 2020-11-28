@@ -64,5 +64,11 @@ namespace MovieClient.Controllers
 
             return View(Movies);
         }
+
+        public ActionResult MovieDetails(MovieModel movie)
+        {
+
+            return View(movie);
+        }
     }
 }

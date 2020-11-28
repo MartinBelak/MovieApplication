@@ -11,11 +11,6 @@
         var id = int.Parse(isLoggedIn.ToString().Split(',').ElementAt(1));
         <p>You are logged in as @name</p>
 
-        if (TempData["RatingMsg"] != null)
-        {
-            <h1>@TempData["RatingMsg"].ToString()</h1>
-        }
-
         <div class="container">
             <form name="UserModel" method="POST" action="/Home/Logout">
                 <div class="field is-grouped">

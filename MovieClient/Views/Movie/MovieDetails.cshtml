@@ -1,0 +1,48 @@
+﻿@using MovieClient.Models
+
+@model MovieModel
+
+@{ 
+    var Actors = Model.Actors.Split(',');
+    string UserName = "" ;
+    string UserId = "";
+    var user = TempData["IsLoggedIn"];
+    TempData.Keep();
+    string[] data ;
+    if (user !=null)
+    {
+        data = user.ToString().Split(',');
+        UserName = data[0];
+        UserId = data[1];
+    }
+}
+
+<div class="col-lg-12">
+    <div class="col-lg-6">
+        <h2>@Model.Title - @Model.Duration mins</h2> 
+        <p>@Actors[0],@Actors[1], @Actors[2]</p>
+        <div>
+            <h4> @Model.Description</h4>
+           
+        </div>
+        <div>
+            <h4> Rating:  @Model.Rating</h4>
+        </div>
+        <br />
+        @if (user!=null)
+        {
+          <div style="text-align:center">
+            <a href="#">Add To WishList</a>
+        </div>
+        }
+
+        <br />
+        <br />
+        <p>@Model.ProductionCompany, @Model.Year</p>
+        
+
+    </div>
+    <div class="col-lg-6">
+        <img src="https://image.shutterstock.com/image-vector/no-image-available-icon-template-600w-1036735678.jpg" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
