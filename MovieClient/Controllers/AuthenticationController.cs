@@ -26,6 +26,10 @@ namespace MovieClient.Controllers
                 return View("./Index", UserData);
             }
         }
+        public ActionResult RegisterUserPage()
+        {
+            return View();
+        }
 
         public ActionResult RegisterUser(UserModel model)
         {

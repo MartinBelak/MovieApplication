@@ -57,10 +57,5 @@ namespace MovieClient.Controllers
             
             return View("./Index");
         }
-
-        public ActionResult RegisterUserPage()
-        {
-            return View();
-        }
     }
 }
