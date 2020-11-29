@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var user = TempData["IsLoggedIn"];
+    TempData.Keep();
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,7 +26,15 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Latest Movies", "AllMovies", "Movie")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @{
+                        if (user != null)
+                        {
+                            <li>@Html.ActionLink("Wishlist", "WishList", "Movie")</li>
+                        }
+
+                    }
+
+
                 </ul>
             </div>
         </div>

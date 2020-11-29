@@ -18,12 +18,12 @@ namespace MovieClient.Controllers
             {
                 TempData["IsLoggedIn"] = null;
                 TempData["LogginMessage"] = "No user with such Id in Our Database or there is error in connection string";
-                return View("./Index");
+                return View("Home/Index");
             }
             else
             {
                 TempData["IsLoggedIn"] = UserData.UserName + "," + UserData.UserId;
-                return View("./Index", UserData);
+                return Redirect("~/Home/Index");
             }
         }
         public ActionResult RegisterUserPage()

@@ -23,8 +23,9 @@ namespace MovieClient.Controllers
             string messageUrl = "AllMovies";
             string url = baseUrl + messageUrl;
             string json = "";
-            
-            
+            List<MovieModel> Movies = new List<MovieModel>();
+
+
 
             RestRequest request = new RestRequest();
             request.Method = Method.GET;
@@ -35,7 +36,7 @@ namespace MovieClient.Controllers
                 var client = new RestClient
                 {
                     BaseUrl = new Uri(url),
-                       
+
                 };
 
                 response = client.Execute(request);
@@ -50,7 +51,7 @@ namespace MovieClient.Controllers
                 }
                 else
                 {
-                      json= "Failed";
+                    json = "Failed";
                 }
             }
             catch (Exception ex)
@@ -59,8 +60,15 @@ namespace MovieClient.Controllers
                 throw ex;
             }
 
-            
-            List<MovieModel> Movies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
+            if (json == "Failed")
+            {
+                Movies = new List<MovieModel>();
+            }
+            else
+            {
+                Movies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
+            }
+
 
             return View(Movies);
         }
@@ -69,6 +77,19 @@ namespace MovieClient.Controllers
         {
 
             return View(movie);
+        }
+
+        public ActionResult WishList()
+        {
+            var user = TempData["IsLoggedIn"];
+            TempData.Keep();
+            string[] data;
+            data = 
+          
+            string UserId = user.ToString().Split(',')[1];
+
+
+            return View();
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿
+@{
+
+    var user = TempData["IsLoggedIn"];
+    TempData.Keep();
+    string[] data;
+    string UserName="";
+    string UserId ="";
+    if (user != null)
+    {
+        data = user.ToString().Split(',');
+        UserName = data[0];
+        UserId = data[1];
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+   
+</head>
+<body>
+    <h2>@UserName's WishList</h2>
+</body>
+</html>
