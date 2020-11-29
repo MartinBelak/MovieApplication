@@ -1,4 +1,5 @@
 ﻿using MovieClient.Models;
+using MovieClient.Persistency;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -83,10 +84,11 @@ namespace MovieClient.Controllers
         {
             var user = TempData["IsLoggedIn"];
             TempData.Keep();
-            string[] data;
-            data = 
-          
+            
             string UserId = user.ToString().Split(',')[1];
+
+            var ids = AzureDb.Instance.MoviesForUserFromWishList();
+
 
 
             return View();
