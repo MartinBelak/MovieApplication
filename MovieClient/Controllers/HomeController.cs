@@ -60,8 +60,6 @@ namespace MovieClient.Controllers
 
         public ActionResult RegisterUserPage()
         {
-            ViewBag.Message = "Create new user";
-
             return View();
         }
     }

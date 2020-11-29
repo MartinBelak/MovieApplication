@@ -31,7 +31,7 @@ namespace MovieClient.Controllers
         {
             AzureDb.Instance.RegisterUser(model);
 
-            return View("./Index");
+            return View("RegisterUserPage");
         }
     }
 }
