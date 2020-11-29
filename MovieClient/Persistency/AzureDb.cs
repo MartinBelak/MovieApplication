@@ -105,5 +105,12 @@ namespace MovieClient.Persistency
                 Console.WriteLine(e);
             }       
         }
+
+        public List<int> MoviesForUserFromWishList()
+        {
+            List<int> MoviesIds = new List<int>();
+
+            return MoviesIds;
+        }
     }
 }
