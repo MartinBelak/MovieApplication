@@ -3,46 +3,48 @@
 @{
     ViewBag.Title = "RegisterUserPage";
 }
-<b style="font-size:20px">@ViewBag.message</b>
-<div class="row">
-    <div class="col-md-9">
-        <form name="UserModel" method="POST" action="/Home/RegisterUser">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input class="form-control" placeholder="Username" name="UserName" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pwd" class="control-label"></label>
-                <input class="form-control" placeholder="Password" name="PasswordHash" type="password" />
-                <span asp-validation-for="Pwd" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="margin-top:30px">
-                <label asp-for="Gender" class="control-label"></label>
-                <input type="radio" name="Gender" value="true" />Male
-                <input type="radio" name="Gender" value="false" />Female
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input class="form-control" placeholder="Age" name="Age" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input class="form-control" placeholder="Nationality" name="Nationality" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save User Details" class="button is-link" />
-            </div>
-        </form>
+@using (Html.BeginForm("RegisterUser", "Authentication"))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    var RegMsg = TempData["RegMessage"];
+    <b style="font-size:20px">@ViewBag.message</b>
+    <h5 style="color:red">@RegMsg</h5>
+    <div class="row">
+        <div class="col-md-9">
+            <form name="UserModel" method="POST" action="/Authentication/RegisterUser">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { placeholder = "Username" } })
+                    @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { placeholder = "Password" } })
+                    @Html.ValidationMessageFor(model => model.PasswordHash, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group" style="margin-top:20px">
+                    <input type="radio" name="Gender" value="true" checked /> Male
+                    <input style="margin-left:10px" type="radio" name="Gender" value="false" /> Female
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { placeholder = "Age" } })
+                    @Html.ValidationMessageFor(model => model.Age, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { placeholder = "Nationality" } })
+                    @Html.ValidationMessageFor(model => model.Nationality, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save User Details" class="button is-link" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <h5><a href="/">Back to the main page</a></h5>
-</div>
+    <div>
+        <h5><a href="/">Back to the main page</a></h5>
+    </div>
+}
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,6 +1,7 @@
 ﻿using MovieClient.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -75,35 +76,40 @@ namespace MovieClient.Persistency
             return result;           
         }
 
-        public void RegisterUser (UserModel user)
+        public int RegisterUser (UserModel user)
         {
-            UserModel result = new UserModel();
             var userName = user.UserName;
             var gender = user.Gender;
             var age = user.Age;
             var nationality = user.Nationality;
             var password = user.PasswordHash;
+            var response = 0;
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
                 {   
                     SqlCommand cmd = new SqlCommand("dbo.AddUser", conn);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("pUserName", userName);
                     cmd.Parameters.AddWithValue("pGender", BitConverter.GetBytes(gender));
                     cmd.Parameters.AddWithValue("pAge",age);
                     cmd.Parameters.AddWithValue("pNationality", nationality);
                     cmd.Parameters.AddWithValue("pPassword", password);
+                    cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 500);
+                    cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
                     cmd.Connection = conn;
                     conn.Open();
-                    cmd.ExecuteNonQuery();                 
+                    cmd.ExecuteNonQuery();
+                    response = int.Parse(cmd.Parameters["@responseMessage"].Value.ToString());
+                    conn.Close();
                 }
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
-            }       
+            }
+            return response;
         }
 
         public List<int> MoviesForUserFromWishList()

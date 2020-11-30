@@ -22,22 +22,6 @@ namespace MovieClient.Controllers
             return View();
         }
 
-        public ActionResult Login(UserModel model)
-        {
-            var UserData = AzureDb.Instance.LoginUser(model);
-            if (UserData.UserId == 0)
-            {
-                TempData["IsLoggedIn"] = null;
-                TempData["LogginMessage"] = "No user with such Id in Our Database or there is error in connection string";
-                return View("./Index");
-            }
-            else
-            {
-                TempData["IsLoggedIn"] = UserData.UserName + "," + UserData.UserId;
-                return View("./Index", UserData);
-            }
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -48,13 +32,6 @@ namespace MovieClient.Controllers
         public ActionResult Logout()
         {
             TempData["IsLoggedIn"] = null;            
-            return View("./Index");
-        }
-
-        public ActionResult RegisterUser(UserModel model)
-        {
-            AzureDb.Instance.RegisterUser(model);
-            
             return View("./Index");
         }
     }

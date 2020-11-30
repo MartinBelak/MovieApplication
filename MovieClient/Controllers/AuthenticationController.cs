@@ -18,24 +18,42 @@ namespace MovieClient.Controllers
             {
                 TempData["IsLoggedIn"] = null;
                 TempData["LogginMessage"] = "No user with such Id in Our Database or there is error in connection string";
-                return View("Home/Index");
+
+                return View("~/Views/Home/Index.cshtml");
             }
             else
             {
                 TempData["IsLoggedIn"] = UserData.UserName + "," + UserData.UserId;
+
                 return Redirect("~/Home/Index");
             }
         }
         public ActionResult RegisterUserPage()
         {
+            ViewBag.Message = "Create new user";
             return View();
         }
 
         public ActionResult RegisterUser(UserModel model)
         {
-            AzureDb.Instance.RegisterUser(model);
+            var response = AzureDb.Instance.RegisterUser(model);
 
-            return View("RegisterUserPage");
+            if (response == 1)
+            {
+                TempData["LogginMessage"] = "Registration Succesfull :)";
+                return View("~/Views/Home/Index.cshtml");
+
+            }
+            else if (response == 2)
+            {
+                TempData["RegMessage"] = "This username already exists :(";
+                return View("RegisterUserPage");
+            }
+            else
+            {
+                TempData["RegMessage"] = "Something went wrong :(";
+                return View("RegisterUserPage");
+            }
         }
     }
 }

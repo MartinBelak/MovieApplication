@@ -20,7 +20,7 @@ namespace MovieClient.Controllers
         public ActionResult AllMovies()
         {
 
-            string baseUrl = "https://localhost:44328/api/Movies/";
+            string baseUrl = "http://localhost:44328/api/Movies/";
             string messageUrl = "AllMovies";
             string url = baseUrl + messageUrl;
             string json = "";
