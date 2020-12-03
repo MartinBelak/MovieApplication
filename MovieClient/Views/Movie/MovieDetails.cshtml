@@ -1,7 +1,7 @@
 ﻿@using MovieClient.Models
 
 @model MovieModel
-
+ 
 @{ 
     var Actors = Model.Actors.Split(',');
     string UserName = "" ;
@@ -31,9 +31,9 @@
         <br />
         @if (user!=null)
         {
-          <div style="text-align:center">
-            <a href="#">Add To WishList</a>
-        </div>
+    <div style="text-align:center">
+         <a href="@Url.Action("AddToWishlist", "Movie", Model)">Add To WishList</a>
+    </div>
         }
         else
         {

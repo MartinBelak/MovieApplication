@@ -93,5 +93,14 @@ namespace MovieClient.Controllers
 
             return View();
         }
+
+        public ActionResult AddToWishList(MovieModel selectedMovie)
+        {
+            var selectedUser = TempData["IsLoggedIn"];
+            int UserId = int.Parse(selectedUser.ToString().Split(',')[1]);
+            AzureDb.Instance.AddToWishList(selectedMovie, UserId);
+
+            return View("~/Views/Movie/MovieDetails.cshtml");
+        }
     }
 }

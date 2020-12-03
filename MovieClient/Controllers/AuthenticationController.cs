@@ -17,7 +17,7 @@ namespace MovieClient.Controllers
             if (UserData.UserId == 0)
             {
                 TempData["IsLoggedIn"] = null;
-                TempData["LogginMessage"] = "No user with such Id in Our Database or there is error in connection string";
+                TempData["LogginMessage"] = "The username or password is not correct.";
 
                 return View("~/Views/Home/Index.cshtml");
             }

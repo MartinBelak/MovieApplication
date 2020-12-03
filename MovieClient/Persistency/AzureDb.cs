@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace MovieClient.Persistency
@@ -88,21 +89,23 @@ namespace MovieClient.Persistency
             try
             {
                 using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
-                {   
-                    SqlCommand cmd = new SqlCommand("dbo.AddUser", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("pUserName", userName);
-                    cmd.Parameters.AddWithValue("pGender", BitConverter.GetBytes(gender));
-                    cmd.Parameters.AddWithValue("pAge",age);
-                    cmd.Parameters.AddWithValue("pNationality", nationality);
-                    cmd.Parameters.AddWithValue("pPassword", password);
-                    cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 500);
-                    cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
-                    cmd.Connection = conn;
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    response = int.Parse(cmd.Parameters["@responseMessage"].Value.ToString());
-                    conn.Close();
+                {
+                    using (SqlCommand cmd = new SqlCommand("dbo.AddUser", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("pUserName", userName);
+                        cmd.Parameters.AddWithValue("pGender", BitConverter.GetBytes(gender));
+                        cmd.Parameters.AddWithValue("pAge", age);
+                        cmd.Parameters.AddWithValue("pNationality", nationality);
+                        cmd.Parameters.AddWithValue("pPassword", password);
+                        cmd.Parameters.Add("@responseMessage", SqlDbType.Char, 500);
+                        cmd.Parameters["@responseMessage"].Direction = ParameterDirection.Output;
+                        cmd.Connection = conn;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        response = int.Parse(cmd.Parameters["@responseMessage"].Value.ToString());
+                        conn.Close();
+                    }
                 }
             }
             catch (SqlException e)
@@ -116,7 +119,43 @@ namespace MovieClient.Persistency
         {
             List<int> MoviesIds = new List<int>();
 
+            string input = "40,30,10,25.";
+            // Split on one or more non-digit characters.
+            string[] numbers = Regex.Split(input, @"\D+");
+            foreach (string value in numbers)
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    int i = int.Parse(value);
+                    Console.WriteLine("Number: {0}", i);
+                }
+            }
+
             return MoviesIds;
+        }
+
+        public void AddToWishList(MovieModel movie, int user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("dbo.AddToWishlist", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@pUserId", user);
+                        cmd.Parameters.AddWithValue("@pMovieId", movie.MovieId.ToString());
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            //return response;
         }
     }
 }
