@@ -97,10 +97,20 @@ namespace MovieClient.Controllers
         public ActionResult AddToWishList(MovieModel selectedMovie)
         {
             var selectedUser = TempData["IsLoggedIn"];
-            int UserId = int.Parse(selectedUser.ToString().Split(',')[1]);
-            AzureDb.Instance.AddToWishList(selectedMovie, UserId);
+            int selectedUserId = int.Parse(selectedUser.ToString().Split(',')[1]);
 
-            return View("~/Views/Movie/MovieDetails.cshtml");
+            var movieIds = AzureDb.Instance.CheckForMovieIds(selectedUserId);
+            if (!movieIds.Contains(selectedMovie.MovieId.ToString()))
+            {
+                AzureDb.Instance.AddToWishList(selectedMovie, selectedUserId);
+                TempData["WishlistMessage"] = "Movie added to wishlist.";
+                return View("~/Views/Movie/MovieDetails.cshtml");
+            }
+            else
+            {
+                TempData["WishlistMessage"] = "Movie is already in your wishlist.";
+                return View("~/Views/Movie/MovieDetails.cshtml");
+            }
         }
     }
 }

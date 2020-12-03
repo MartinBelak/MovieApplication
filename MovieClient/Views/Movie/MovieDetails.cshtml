@@ -9,6 +9,7 @@
     var user = TempData["IsLoggedIn"];
     TempData.Keep();
     string[] data ;
+    var WishlistMsg = TempData["WishlistMessage"];
     if (user !=null)
     {
         data = user.ToString().Split(',');
@@ -32,8 +33,10 @@
         @if (user!=null)
         {
     <div style="text-align:center">
-         <a href="@Url.Action("AddToWishlist", "Movie", Model)">Add To WishList</a>
+        <a href="@Url.Action("AddToWishlist", "Movie", Model)">Add To WishList</a>
+        <h5 style="color:red">@WishlistMsg</h5>
     </div>
+            
         }
         else
         {
