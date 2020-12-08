@@ -155,7 +155,7 @@ namespace MovieClient.Persistency
             {
                 Console.WriteLine(e);
             }
-            //return response;
+            //return response; // might change to return something?
         }
 
         public string[] CheckForMovieIds(int userId)
@@ -188,6 +188,36 @@ namespace MovieClient.Persistency
             //returns string array of movie Ids
             string[] movieIds = Regex.Split(outputString, @"\D+");
             return movieIds;
+        }
+
+        public string StringOfMovieIds(int userId)
+        {
+            string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = " + userId;
+            string outputString = "";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(queryString, conn))
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            outputString = reader["MovieIdList"].ToString();
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return outputString;
         }
     }
 }
