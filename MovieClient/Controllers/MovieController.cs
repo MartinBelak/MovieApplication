@@ -15,10 +15,10 @@ namespace MovieClient.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie
+        
         public ActionResult AllMovies()
         {
-            string baseUrl = "http://localhost:44328/api/Movies/";
+            string baseUrl = "http://localhost:59076/api/Movies/";
             string messageUrl = "AllMovies";
             string url = baseUrl + messageUrl;
             string json = "";
@@ -161,6 +161,54 @@ namespace MovieClient.Controllers
                 TempData["WishlistMessage"] = "Movie is already in your wishlist.";
                 return View("~/Views/Movie/MovieDetails.cshtml", selectedMovie);
             }
+        }
+
+        public ActionResult Search(string SearchQuery)
+        {
+            string baseUrl = "http://localhost:59076/api/Movies/";
+            string messageUrl = "Search"+"?SearchQuery="+SearchQuery;
+            string url = baseUrl + messageUrl;
+            string json = "";
+            List<MovieModel> ResultMovies = new List<MovieModel>();
+
+            RestRequest request = new RestRequest();
+            request.Method = Method.POST;
+
+            IRestResponse response;
+            try
+            {
+                var client = new RestClient
+                {
+                    BaseUrl = new Uri(url),
+                };
+
+                response = client.Execute(request);
+                if (response.IsSuccessful)
+                {
+                    var test = JsonDocument.Parse(response.Content);
+                    json = test.RootElement.ToString();
+                    //response.con
+                    //json = response.Content.Replace("\\","");
+                    //json = json.Replace(@"\","");
+                    //json = json.Replace("\\", "");
+                }
+                else
+                {
+                    json = "Failed";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            if (json != "Failed")
+            {
+                ResultMovies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
+            }
+        
+            return View("~/Views/Movie/AllMovies.cshtml", ResultMovies);
+
         }
     }
 }
