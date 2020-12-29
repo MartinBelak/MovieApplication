@@ -219,5 +219,47 @@ namespace MovieClient.Persistency
 
             return outputString;
         }
+
+        public List<MovieModel> WishListSearch(string SearchRequest)
+        {
+            List<MovieModel> Movies = new List<MovieModel>();
+
+            using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+            {
+                conn.Open();
+                var query = "Select * from dbo.[Wishlist] where Title like '%" + SearchRequest + "%'";
+
+                SqlCommand comand = new SqlCommand(query, conn);
+                SqlDataReader reader = comand.ExecuteReader();
+                int Count = 0;
+                while (reader.Read())
+                {
+                    var Movie = new MovieModel();
+                    Movie.MovieId = int.Parse(reader["MovieId"].ToString());
+                    Movie.Title = reader["Title"].ToString();
+                    Movie.Year = int.Parse(reader["Year"].ToString());
+                    Movie.Genre = reader["Genre"].ToString();
+                    Movie.Duration = int.Parse(reader["Duration"].ToString());
+                    Movie.Country = reader["Country"].ToString();
+                    Movie.Language = reader["Language"].ToString();
+                    Movie.Director = reader["Director"].ToString();
+                    Movie.ProductionCompany = reader["ProductionCompany"].ToString();
+                    Movie.Actors = reader["Actors"].ToString();
+                    Movie.Description = reader["Description"].ToString();
+                    Count++;
+
+                    if (Count > 99)
+                    {
+                        break;
+                    }
+
+                    Movies.Add(Movie);
+                }
+
+                conn.Close();
+            }
+
+            return Movies;
+        }
     }
 }

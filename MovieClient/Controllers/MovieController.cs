@@ -163,10 +163,10 @@ namespace MovieClient.Controllers
             }
         }
 
-        public ActionResult Search(string SearchQuery)
+        public ActionResult Search(string SearchQuery, string SearchType)
         {
             string baseUrl = "http://localhost:59076/api/Movies/";
-            string messageUrl = "Search"+"?SearchQuery="+SearchQuery;
+            string messageUrl = "Search"+"?SearchQuery="+SearchQuery+"&SearchType="+SearchType;
             string url = baseUrl + messageUrl;
             string json = "";
             List<MovieModel> ResultMovies = new List<MovieModel>();
@@ -207,6 +207,14 @@ namespace MovieClient.Controllers
                 ResultMovies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
             }
         
+            return View("~/Views/Movie/AllMovies.cshtml", ResultMovies);
+
+        }
+        public ActionResult WishListSearch(string SearchRequest)
+        {
+
+            List<MovieModel> ResultMovies =  AzureDb.Instance.WishListSearch(SearchRequest);
+
             return View("~/Views/Movie/AllMovies.cshtml", ResultMovies);
 
         }
