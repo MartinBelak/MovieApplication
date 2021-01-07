@@ -72,9 +72,11 @@ namespace MoviesAPIServer.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var query = "Select * from [dbo].Movie Where MovieId = " + MovieId;
+                var query = "Select * from [dbo].Movie Where MovieId =@MovieId";
 
                 SqlCommand comand = new SqlCommand(query, conn);
+                comand.Parameters.AddWithValue("@MovieId", MovieId);
+
                 SqlDataReader reader = comand.ExecuteReader();
                 while (reader.Read())
                 {               
@@ -117,9 +119,10 @@ namespace MoviesAPIServer.Controllers
                     conn.Open();
                     foreach (var id in movieIds)
                     {
-                        var query = "Select * from [dbo].Movie Where MovieId = " + id;
+                        var query = "Select * from [dbo].Movie Where MovieId = @id" ;
 
                         SqlCommand comand = new SqlCommand(query, conn);
+                        comand.Parameters.AddWithValue("@id", id);
                         SqlDataReader reader = comand.ExecuteReader();
                         while (reader.Read())
                         {
@@ -156,9 +159,22 @@ namespace MoviesAPIServer.Controllers
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                var query = "Select * from [dbo].Movie where " + SearchType + " like '%" + SearchQuery + "%'";
-
+                var query = "";
+                if (SearchType=="Title")
+                {
+                     query = "Select * from [dbo].Movie where title like '%' + @query + '%'";
+                }
+                if (SearchType=="Genre")
+                {
+                     query = "Select * from [dbo].Movie where Genre like '%' + @query + '%'";
+                }
+                if (SearchType =="Actors")
+                {
+                     query = "Select * from [dbo].Movie where Actors like '%' + @query + '%'";
+                }
                 SqlCommand comand = new SqlCommand(query, conn);
+                
+                comand.Parameters.Add(new SqlParameter("@query", SearchQuery));
                 SqlDataReader reader = comand.ExecuteReader();
                 int Count = 0;
                 while (reader.Read())

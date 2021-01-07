@@ -160,7 +160,7 @@ namespace MovieClient.Persistency
 
         public string[] CheckForMovieIds(int userId)
         {
-            string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = " + userId;
+            string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = @id";
             string outputString = "";
 
             try
@@ -170,6 +170,7 @@ namespace MovieClient.Persistency
                     using (SqlCommand cmd = new SqlCommand(queryString, conn))
                     {
                         conn.Open();
+                        cmd.Parameters.AddWithValue("@id", userId);
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
                         if (reader.HasRows)
@@ -192,7 +193,7 @@ namespace MovieClient.Persistency
 
         public string StringOfMovieIds(int userId)
         {
-            string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = " + userId;
+            string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = @id";
             string outputString = "";
 
             try
@@ -202,6 +203,7 @@ namespace MovieClient.Persistency
                     using (SqlCommand cmd = new SqlCommand(queryString, conn))
                     {
                         conn.Open();
+                        cmd.Parameters.AddWithValue("@id", userId);
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
                         if (reader.HasRows)

@@ -40,10 +40,6 @@ namespace MovieClient.Controllers
                 {
                     var test = JsonDocument.Parse(response.Content);
                     json = test.RootElement.ToString();
-                    //response.con
-                    //json = response.Content.Replace("\\","");
-                    //json = json.Replace(@"\","");
-                    //json = json.Replace("\\", "");
                 }
                 else
                 {
