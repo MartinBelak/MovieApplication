@@ -85,7 +85,7 @@ namespace MovieClient.Controllers
             RestRequest request = new RestRequest();
             request.Method = Method.GET;
             IRestResponse response;
-            string url = "http://localhost:44328/api/Movies?MovieIdsString=" + ids;
+            string url = "http://localhost:59076/api/Movies?MovieIdsString=" + ids;
 
             var client = new RestClient
             {
