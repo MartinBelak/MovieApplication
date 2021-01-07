@@ -1,0 +1,597 @@
+{
+  "id": "74525b79-7b7b-4f81-84c8-c5fb14450bdc",
+  "version": "2.0",
+  "name": "Bachelor Project",
+  "url": "http://localhost:50069",
+  "tests": [{
+    "id": "59faf4a6-f663-4368-abcc-66f863aeb964",
+    "name": "Login / Logout",
+    "commands": [{
+      "id": "d7cd7c55-9520-4bdd-b912-08342248f50b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "32719364-a41e-4b00-8ae5-1a3802d346a2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1051x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b60a4335-f269-4bc8-adfe-e8d7cb1d5158",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "58eaa9b1-234b-44d6-8cb4-6686ac96804f",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7ae774a-7b52-470c-b551-f4677b56a86d",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "096749fb-e790-4bc1-9b56-ec52ad9276ba",
+      "comment": "",
+      "command": "type",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "9b5dfc3e-cb9f-498d-bf29-687c56e8bfd3",
+      "comment": "",
+      "command": "type",
+      "target": "name=PasswordHash",
+      "targets": [
+        ["name=PasswordHash", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='PasswordHash']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "fcf6e957-84ed-4cba-b845-ea92089389c5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-group:nth-child(4) > .button",
+      "targets": [
+        ["css=.form-group:nth-child(4) > .button", "css:finder"],
+        ["xpath=//input[@value='Login']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f01b39b-e8f0-4124-b57e-8276b477bf0f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Latest Movies",
+      "targets": [
+        ["linkText=Latest Movies", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Latest Movies')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/AllMovies')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Latest Movies')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7b59c8b-1111-4bbb-9248-af76e1494346",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Application name",
+      "targets": [
+        ["linkText=Application name", "linkText"],
+        ["css=.navbar-brand", "css:finder"],
+        ["xpath=//a[contains(text(),'Application name')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Application name')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a89de6d-1b0c-4ebc-b6f6-1f390f03a052",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button",
+      "targets": [
+        ["css=.button", "css:finder"],
+        ["xpath=//form/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log Out')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "87dafb71-6fec-463d-a066-f51514fecc19",
+    "name": "Add Movie to Wishlist",
+    "commands": [{
+      "id": "95f9d59c-25b0-42c8-9423-ee2bd3121f2d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0c8419f0-4066-4373-863f-74187d143fcd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1051x806",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2e92394c-9ed1-4d7b-bcb5-f8771509f0f3",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f909fe3d-469d-4a80-b328-77a74bd89e16",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b8f8952-a18c-4087-937e-4fdf69fa2e20",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "46245524-cde3-4e7b-9d6c-7c31da53ba0b",
+      "comment": "",
+      "command": "type",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "60acd9c1-c442-4d29-af78-b12036427e6e",
+      "comment": "",
+      "command": "type",
+      "target": "name=PasswordHash",
+      "targets": [
+        ["name=PasswordHash", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='PasswordHash']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "c063072d-aa92-4a45-87b9-b0e150a5938d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-group:nth-child(4) > .button",
+      "targets": [
+        ["css=.form-group:nth-child(4) > .button", "css:finder"],
+        ["xpath=//input[@value='Login']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0441270d-2e86-4d05-b4af-2a4049a136c1",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Latest Movies",
+      "targets": [
+        ["linkText=Latest Movies", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Latest Movies')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/AllMovies')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Latest Movies')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "75cac149-c99b-48f1-9f18-3fd40ed31c2f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-3:nth-child(21) h2",
+      "targets": [
+        ["css=.col-md-3:nth-child(21) h2", "css:finder"],
+        ["xpath=//div[21]/a/h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Damien veut changer le monde')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6271d0f7-ed72-49d1-8403-2948a89b1d74",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add To WishList",
+      "targets": [
+        ["linkText=Add To WishList", "linkText"],
+        ["css=div:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add To WishList')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/AddToWishlist?MovieId=21&Title=Damien%20veut%20changer%20le%20monde&Year=2019&Genre=Comedy&Duration=99&Country=France&Language=French&Director=Xavier%20de%20Choudens&ProductionCompany=Agat%20Films%20%26%20Cie&Actors=Franck%20Gastambide%2C%20Melisa%20S%C3%B6zen%2C%20Gringe%2C%20Camille%20Lellouche%2C%20Patrick%20Chesnais%2C%20Liliane%20Rov%C3%A8re%2C%20Youssef%20Hajdi%2C%20Jessim%20Kas%2C%20Bass%20Dhem%2C%20R%C3%A9my%20Adriaens%2C%20S%C3%A9bastien%20Chassagne%2C%20Claire%20Chust%2C%20Tatiana%20Rojo%2C%20Zahra%20Amir%20Ebrahimi%2C%20Roda%20Canioglu&Description=Damien%20is%20a%20pawn%20in%20a%20primary%20school%2C%20and%20leads%20a%20quiet%20life.%20To%20rescue%20one%20of%20his%20young%20students%2C%20Bahzad%2C%20and%20his%20mother%20from%20imminent%20expulsion%20from%20the%20land%2C%20Damien%20reconnects%20with%20his%20...&Rating=0')]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add To WishList')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d69b3d6b-b8a7-402f-9a95-51b868ee8f45",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Wishlist",
+      "targets": [
+        ["linkText=Wishlist", "linkText"],
+        ["css=li:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Wishlist')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/WishList')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Wishlist')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3867a04a-f8f9-4d8e-b9e2-1998c3185bac",
+    "name": "Search Movie - title",
+    "commands": [{
+      "id": "59d835c0-f37c-4ca3-8d50-c77cb573272d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e172bbc6-7272-458d-9011-989cf1cf2f8b",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6699eb30-c238-44c8-a9b6-7c0a8f31da86",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "15902341-f036-4c07-9b10-e377b5cab204",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "40aa87b3-4d8e-4eb2-8e73-9cbbf3e57967",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d791294f-a47e-4c65-abbb-7a01d7f30cce",
+      "comment": "",
+      "command": "type",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "8c5b957b-d524-4cde-8e07-23a98ae3b9ae",
+      "comment": "",
+      "command": "type",
+      "target": "name=PasswordHash",
+      "targets": [
+        ["name=PasswordHash", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='PasswordHash']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "13a45fd5-ebd7-4b77-ad13-7b6045124371",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-group:nth-child(4) > .button",
+      "targets": [
+        ["css=.form-group:nth-child(4) > .button", "css:finder"],
+        ["xpath=//input[@value='Login']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "66741c7b-c0ef-47b8-b0eb-f7db252ba8c6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Latest Movies",
+      "targets": [
+        ["linkText=Latest Movies", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Latest Movies')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/AllMovies')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Latest Movies')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "886d5c62-41b8-4c8a-9db9-e2215f91b7c7",
+      "comment": "",
+      "command": "click",
+      "target": "name=SearchQuery",
+      "targets": [
+        ["name=SearchQuery", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='SearchQuery']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2c4e818a-788a-4315-bf9a-f3dc52d738b6",
+      "comment": "",
+      "command": "type",
+      "target": "name=SearchQuery",
+      "targets": [
+        ["name=SearchQuery", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='SearchQuery']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Shepard"
+    }, {
+      "id": "e80dce96-f9f0-4218-8e31-826182fdb81f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "27aa929a-e7c2-428a-b6b8-09932f0b87bc",
+    "name": "Search Genre",
+    "commands": [{
+      "id": "069e037a-b35b-483b-873f-620ae2eb604c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c918b2d1-357c-41c1-b6f8-36c12abc8d60",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1054x808",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6fb765aa-7d3e-4e65-9fa5-ea32cb1f0efb",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecb87c86-7784-40d5-9a3e-2b5d4760321e",
+      "comment": "",
+      "command": "click",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "89e2c910-19c8-4bab-8d6d-ef84f2fcd709",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1926c00f-876c-4dd7-8734-d7f9588fc333",
+      "comment": "",
+      "command": "type",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "38a08976-d146-4d19-93b3-c24e14fe8e9b",
+      "comment": "",
+      "command": "type",
+      "target": "name=PasswordHash",
+      "targets": [
+        ["name=PasswordHash", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='PasswordHash']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Noro"
+    }, {
+      "id": "8f88f528-da18-4b02-b5da-74bbc9d8a81c",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=PasswordHash",
+      "targets": [
+        ["name=PasswordHash", "name"],
+        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
+        ["xpath=//input[@name='PasswordHash']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "b23fff76-f873-4e9a-87dc-2b01713dc544",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Latest Movies",
+      "targets": [
+        ["linkText=Latest Movies", "linkText"],
+        ["css=li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Latest Movies')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/Movie/AllMovies')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Latest Movies')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "86cf849b-dfc7-4913-9f7f-a1815083228c",
+      "comment": "",
+      "command": "click",
+      "target": "name=SearchQuery",
+      "targets": [
+        ["name=SearchQuery", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='SearchQuery']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3849ea05-acea-4a2f-9d69-032f69763024",
+      "comment": "",
+      "command": "type",
+      "target": "name=SearchQuery",
+      "targets": [
+        ["name=SearchQuery", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='SearchQuery']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Comedy"
+    }, {
+      "id": "64ded8ea-2467-427c-a390-4bd6313907b7",
+      "comment": "",
+      "command": "click",
+      "target": "name=SearchType",
+      "targets": [
+        ["name=SearchType", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@name='SearchType']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9fe2d55d-7605-48e7-9243-836d56829c68",
+      "comment": "",
+      "command": "select",
+      "target": "name=SearchType",
+      "targets": [],
+      "value": "label=Genre"
+    }, {
+      "id": "8578f596-c50d-4ddc-a916-a37808482125",
+      "comment": "",
+      "command": "click",
+      "target": "name=SearchType",
+      "targets": [
+        ["name=SearchType", "name"],
+        ["css=select", "css:finder"],
+        ["xpath=//select[@name='SearchType']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "627e256c-16a1-4098-91dc-b30b942eaa5e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5bfe9018-7491-4a7f-b09c-3399be570906",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:50069/"],
+  "plugins": []
+}
