@@ -158,6 +158,29 @@ namespace MovieClient.Persistency
             //return response; // might change to return something?
         }
 
+        public void RemoveFromWishList(MovieModel movie, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("dbo.RemoveFromWishlist", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@pUserId", userId);
+                        cmd.Parameters.AddWithValue("@pMovieId", movie.MovieId.ToString());
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }           
+        }
+
         public string[] CheckForMovieIds(int userId)
         {
             string queryString = "SELECT MovieIdList FROM dbo.[Wishlist] WHERE UserId = @id";

@@ -65,6 +65,7 @@ namespace MovieClient.Controllers
 
         public ActionResult MovieDetails(MovieModel movie)
         {
+            TempData.Remove("WishlistMessage");
             return View(movie);
         }
 
@@ -157,6 +158,18 @@ namespace MovieClient.Controllers
                 TempData["WishlistMessage"] = "Movie is already in your wishlist.";
                 return View("~/Views/Movie/MovieDetails.cshtml", selectedMovie);
             }
+        }
+
+        public ActionResult RemoveFromWishList(MovieModel selectedMovie)
+        {
+            var selectedUser = TempData["IsLoggedIn"];
+            int selectedUserId = int.Parse(selectedUser.ToString().Split(',')[1]);
+
+            var movieIds = AzureDb.Instance.CheckForMovieIds(selectedUserId);           
+            AzureDb.Instance.RemoveFromWishList(selectedMovie, selectedUserId);
+
+            TempData["WishlistMessage"] = "Movie was removed from your wishlist.";
+            return View("~/Views/Movie/MovieDetails.cshtml", selectedMovie);        
         }
 
         public ActionResult Search(string SearchQuery, string SearchType)
