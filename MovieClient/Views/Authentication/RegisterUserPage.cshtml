@@ -21,7 +21,7 @@
                     @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { placeholder = "Password" } })
                     @Html.ValidationMessageFor(model => model.PasswordHash, null, new { @class = "text-danger" })
                 </div>
-                <div class="form-group" style="margin-top:20px">
+                <div class="form-group" style="margin-top:20px" id="Gender">
                     <input type="radio" name="Gender" value="true" checked /> Male
                     <input style="margin-left:10px" type="radio" name="Gender" value="false" /> Female
                 </div>
@@ -34,7 +34,7 @@
                     @Html.ValidationMessageFor(model => model.Nationality, null, new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Save User Details" class="button is-link" />
+                    <input type="submit" id="SaveButton" value="Save User Details" class="button is-link"/>
                 </div>
             </form>
         </div>

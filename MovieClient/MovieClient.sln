@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieClient", "MovieClient.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\MovieClient.Tests\UnitTests\UnitTests.csproj", "{A5D8F8F8-6277-4AC0-B61B-ED3097691076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumTests", "..\SeleniumTests\SeleniumTests.csproj", "{FAC11F73-F07F-4FE3-B23B-DE0590EA898E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A5D8F8F8-6277-4AC0-B61B-ED3097691076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5D8F8F8-6277-4AC0-B61B-ED3097691076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5D8F8F8-6277-4AC0-B61B-ED3097691076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC11F73-F07F-4FE3-B23B-DE0590EA898E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC11F73-F07F-4FE3-B23B-DE0590EA898E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC11F73-F07F-4FE3-B23B-DE0590EA898E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC11F73-F07F-4FE3-B23B-DE0590EA898E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

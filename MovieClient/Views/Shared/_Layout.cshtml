@@ -25,11 +25,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Latest Movies", "AllMovies", "Movie")</li>
+                    <li id="Movies">@Html.ActionLink("Latest Movies", "AllMovies", "Movie")</li>
                     @{
                         if (user != null)
                         {
-                            <li>@Html.ActionLink("Wishlist", "WishList", "Movie")</li>
+                            <li id="WishList">@Html.ActionLink("Wishlist", "WishList", "Movie")</li>
                         }
                     }
                 </ul>

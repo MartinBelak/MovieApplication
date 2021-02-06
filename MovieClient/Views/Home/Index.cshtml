@@ -15,7 +15,7 @@
             <form name="UserModel" method="POST" action="/Home/Logout">
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link">Log Out</button>
+                        <button id="LogoutButton" class="button is-link">Log Out</button>
                     </div>
                 </div>
             </form>
@@ -30,20 +30,20 @@
         <div class="row">
             <div class="col-md-9">
                 <form name="UserModel" method="POST" action="/Authentication/Login">
-                    <h5 style="color:red">@LoginMsg</h5>
+                    <h5 id="LoginMessage" style="color:red">@LoginMsg</h5>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Username" name="UserName" />
+                        <input id="UserName" class="form-control" placeholder="Username" name="UserName" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Password" name="PasswordHash" type="password" />
+                        <input id="Password" class="form-control" placeholder="Password" name="PasswordHash" type="password" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Login" class="button is-link" />
+                        <input id="SubmitButton" type="submit" value="Login" class="button is-link" />
                     </div>
                 </form>
                 <form name="UserModel" method="POST" action="/Authentication/RegisterUserPage">
                     <div class="form-group">
-                        <input type="submit" value="Register" class="button is-link" />
+                        <input id="RegisterButton" type="submit" value="Register" class="button is-link" />
                     </div>
                 </form>
             </div>

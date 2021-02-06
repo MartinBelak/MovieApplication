@@ -9,14 +9,14 @@
     
     <form class="navbar-form navbar-right" method="POST" action="/Movie/Search">
         <div class="form-group">
-            <select name="SearchType" >
+            <select id="Search" name="SearchType" >
                 <option value="Title">Title</option>
                 <option value="Genre">Genre</option>
                 <option value="Actors">Actors</option>
             </select>
-            <input type="text" class="form-control" name="SearchQuery" placeholder="">
+            <input id="SearchField" type="text" class="form-control" name="SearchQuery" placeholder="">
         </div>
-        <button type="submit" class="btn btn-default">Search!</button>
+        <button id="SearchButton" type="submit" class="btn btn-default">Search!</button>
     </form>
     
 
