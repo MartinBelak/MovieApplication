@@ -17,7 +17,5 @@ namespace SeleniumTests
             var output = Regex.Replace(path, @"[\d-]", string.Empty);
             return output.Substring(0, 4);  // Return 8 character string
         }
-
-
     }
 }

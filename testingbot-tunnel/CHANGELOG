@@ -1,0 +1,78 @@
+3.1 (February 2020)
+* Updated dependencies
+* Don't poll tunnel indefinitely
+* Built with JDK8
+* Code cleanup
+
+3.0 (September 2019)
+* Minor fixes (updated dependencies)
+
+2.9
+* Various minor fixes (timeouts, doctor checks, ..)
+
+2.8
+* Fix NPE in CONNECT handling
+
+2.7
+* Rename jettyport option to localport
+* If started with --nocache, send to API for Manual Testing
+* Implemented upstream proxying for HTTPs via CONNECT (--proxy)
+* Updated pom.xml depndencies
+* No more hardcoded ports to listen to
+
+2.6
+* Update pom.xml dependencies
+* Remove incorrect Java version check
+* Remove deprecated features: --boost and --ssl
+* Add option to supply extra HTTP headers during requests
+* Add option to supply basic auth credentials for various hosts, which the tunnel will automatically use
+* Make the --nocache option clearer: Do not cache any HTTP requests
+
+2.5
+* Send Tunnel version to TestingBot
+* Add Proxy PAC support
+
+2.4
+* Add --tunnel-identifier to identify different tunnels for the same account
+* Improved logging (formatting, log to file, debug levels, ...)
+* Improved handling of connection errors (re-establish connection to tunnel VM upon connection failures)
+* Added option where you can specify a local directory to be set up as a webserver, for example to test static files
+* Added an embedded statistics REST api to fetch details about the running instance, by default runs on port 8003
+
+2.3
+* Add --doctor to troubleshoot misconfigurations
+* Update pom.xml dependencies
+* Debugmode will now output HTTP headers
+* Cleanup: remove unused imports and code
+
+2.2
+* Fix the fast-fail domain blacklist feature to work with the new Jetty 9 proxies
+
+1.14
+* remove region
+* update dependencies
+
+1.11
+* ssh compression (zlib)
+
+1.10
+* switch to using blowfish tunnel encryption which should be faster
+* improved error logging
+* display how long each proxied request takes in ms
+* add rabbIT support
+
+1.9
+* remove readyfile when tunnel is stopped
+* cleanup code
+* re-try establishing SSH connection when it fails
+* test forwarding + tunnel upon starting, will show a warning message if something is not working properly.
+
+1.8:
+* Improved error handling, updated Jetty from 7.4.5.v20110725 to 8.1.9.v20130131, which fixes an issue where a HTTP method would sometimes be wrongly proxied.
+
+1.7:
+* Added region support, use -r to specify if you want the tunnel to be used on our US or EU cloud.
+
+1.6:
+* Added support for running multiple tunnels under the same account.
+  This allows for spreading the load across multiple machines when running a high number of simultaneous tests.
