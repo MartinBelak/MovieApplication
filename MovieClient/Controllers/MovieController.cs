@@ -15,8 +15,7 @@ namespace MovieClient.Controllers
 {
     public class MovieController : Controller
     {
-        
-        public ActionResult AllMovies()
+        public List<MovieModel> AllMoviesModel()
         {
             string baseUrl = "http://localhost:59076/api/Movies/";
             string messageUrl = "AllMovies";
@@ -59,6 +58,13 @@ namespace MovieClient.Controllers
             {
                 Movies = JsonConvert.DeserializeObject<List<MovieModel>>(json);
             }
+            return Movies;
+        }
+
+
+        public ActionResult AllMovies()
+        {
+            var Movies = AllMoviesModel();
 
             return View(Movies);
         }
@@ -226,6 +232,131 @@ namespace MovieClient.Controllers
 
             return View("~/Views/Movie/AllMovies.cshtml", ResultMovies);
 
+        }
+
+        public string GetMovieFromTVMaze(string MovieName)
+        {
+            string baseUrl = "http://api.tvmaze.com/singlesearch/shows?q=";
+            string messageUrl = MovieName;
+            string url = baseUrl + messageUrl;
+            var json ="" ;
+            List<MovieModel> Movies = new List<MovieModel>();
+
+            RestRequest request = new RestRequest();
+            request.Method = Method.GET;
+
+            IRestResponse response;
+            try
+            {
+                var client = new RestClient
+                {
+                    BaseUrl = new Uri(url),
+                };
+
+                response = client.Execute(request);
+                if (response.IsSuccessful)
+                {
+                    var test = JsonDocument.Parse(response.Content);
+                    json = test.RootElement.ToString();
+                }
+                else
+                {
+                    json = "Failed";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            
+            return json;
+                  
+        }
+
+        public ActionResult RecommendedMovies()
+        {
+            //Extract UserId
+            var user = TempData["IsLoggedIn"];
+            TempData.Keep();
+            int UserId = 0;
+
+            if (user != null)
+            {
+                UserId = int.Parse(user.ToString().Split(',').ElementAt(1));
+            }
+
+            Dictionary<MovieModel, float> RecommendedMoves = new Dictionary<MovieModel, float>();
+            var Movies = AllMoviesModel();
+
+            //in this loop points are awarded for the two categories
+            //maximum available points is 50 for each category forming 100 points total
+            foreach (var movie in Movies)
+            {
+                float rating = 0;
+                List<string> MovieGenres = new List<string>();
+                var TVMazeMovie = GetMovieFromTVMaze(movie.Title);
+
+                //if requested movie was not found in TVMaze Database
+                if (TVMazeMovie == "Failed")
+                {
+                    rating = 0;
+                    
+                }
+                else
+                {
+                    //Gather genres for the movie
+                    var JsonMovieArray = JObject.Parse(TVMazeMovie);
+                    var ratingValue = JsonMovieArray["rating"]["average"].ToString();
+                    var Genres = JsonMovieArray["genres"];
+                    var GenresCount =Genres.Count();
+                    if (GenresCount!=0)
+                    {
+                        foreach (var genre in Genres)
+                        {
+                            MovieGenres.Add(genre.ToString().ToLower());
+                        }
+                        
+                    }
+                    //Gather rating for the movie
+                    if (ratingValue == "")
+                    {
+                        rating = 0;
+                    }
+                    else
+                    {
+                        rating = float.Parse(ratingValue);
+                    }
+                }
+                
+                //calculating points for rating the formula being P% * X = Y
+                //P being percentage
+                //X Maximum points
+                float P = rating / 10;
+                float X = 50;
+                float Points = P * X;
+
+                var preferences = AzureDb.Instance.GetUserById(UserId);
+                var UserPrefArray = preferences.Split(' ');
+
+                var ResultGenres = MovieGenres.Intersect(UserPrefArray);
+                //calculating points for genres formula: Y/X = P%
+                //Y Being the total of user preferences, X the genres movie has 
+                
+                X = UserPrefArray.Count();
+                
+                var Y = ResultGenres.Count();
+                float Percentage =Y/X ;
+                float GenrePonts = Percentage * 50;
+                
+                Points = Points + GenrePonts;
+               
+                RecommendedMoves.Add(movie, Points);
+            }
+            var sortedDict = from entry in RecommendedMoves orderby entry.Value descending select entry;
+
+            return View("~/Views/Movie/RecommendedMovies.cshtml",sortedDict);
         }
     }
 }

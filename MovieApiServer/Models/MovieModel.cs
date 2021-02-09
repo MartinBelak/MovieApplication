@@ -18,6 +18,6 @@ namespace MoviesAPIServer.Models
         public string ProductionCompany { get; set; }
         public string Actors { get; set; }            
         public string Description { get; set; }    
-        public int Rating { get; set; }
+        public decimal Rating { get; set; }
     }
 }

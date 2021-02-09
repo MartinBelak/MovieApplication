@@ -47,6 +47,7 @@ namespace MoviesAPIServer.Controllers
                     Movie.ProductionCompany = reader["ProductionCompany"].ToString();
                     Movie.Actors = reader["Actors"].ToString();
                     Movie.Description = reader["Description"].ToString();
+                    Movie.Rating = decimal.Parse(reader["Rating"].ToString());
                     Count++;
 
                     if (Count>99)

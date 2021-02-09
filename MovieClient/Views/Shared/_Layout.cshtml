@@ -1,6 +1,7 @@
 ﻿    @{
-    var user = TempData["IsLoggedIn"];
-    TempData.Keep();
+        var user = TempData["IsLoggedIn"];
+        TempData.Keep();
+        int UserId = 0;
 }
 <!DOCTYPE html>
 <html>
@@ -10,6 +11,14 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @{
+        if (user!=null)
+        {
+             UserId = int.Parse(user.ToString().Split(',').ElementAt(1));
+        }
+
+     }
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -30,6 +39,9 @@
                         if (user != null)
                         {
                             <li id="WishList">@Html.ActionLink("Wishlist", "WishList", "Movie")</li>
+                            <li>@Html.ActionLink("Wishlist", "WishList", "Movie")</li>
+                            <li>@Html.ActionLink("RecommendedMovies","RecommendedMovies", "Movie")</li>
+
                         }
                     }
                 </ul>

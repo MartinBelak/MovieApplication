@@ -252,9 +252,10 @@ namespace MovieClient.Persistency
             using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
             {
                 conn.Open();
-                var query = "Select * from dbo.[Wishlist] where Title like '%" + SearchRequest + "%'";
+                var query = "Select * from dbo.[Wishlist]  WHERE UserId = @id";
 
                 SqlCommand comand = new SqlCommand(query, conn);
+                comand.Parameters.Add(new SqlParameter("@id", 3));
                 SqlDataReader reader = comand.ExecuteReader();
                 int Count = 0;
                 while (reader.Read())
@@ -285,6 +286,37 @@ namespace MovieClient.Persistency
             }
 
             return Movies;
+        }
+
+        public string GetUserById(int userId)
+        {
+            string queryString = "SELECT * FROM dbo.[User] WHERE UserId = @id";
+            var Preferences = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_builder.ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(queryString, conn))
+                    {
+                        conn.Open();
+                        cmd.Parameters.AddWithValue("@id", userId);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            Preferences = reader["GenrePreferences"].ToString();
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+
+            
+            return Preferences;
         }
     }
 }
