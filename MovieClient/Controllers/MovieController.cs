@@ -301,8 +301,7 @@ namespace MovieClient.Controllers
                 //if requested movie was not found in TVMaze Database
                 if (TVMazeMovie == "Failed")
                 {
-                    rating = 0;
-                    
+                    rating = 0;                 
                 }
                 else
                 {
@@ -330,20 +329,20 @@ namespace MovieClient.Controllers
                     }
                 }
                 
-                //calculating points for rating the formula being P% * X = Y
-                //P being percentage
+                //calculating points for rating the formula being Points = P% * X
+                //P being one Percent
                 //X Maximum points
                 float P = rating / 10;
                 float X = 50;
                 float Points = P * X;
 
-                var preferences = AzureDb.Instance.GetUserById(UserId);
-                var UserPrefArray = preferences.Split(' ');
-
-                var ResultGenres = MovieGenres.Intersect(UserPrefArray);
                 //calculating points for genres formula: Y/X = P%
-                //Y Being the total of user preferences, X the genres movie has 
-                
+                //X Being the total of user preferences, Y the genres movie has in common with user 
+                var preferences = AzureDb.Instance.GetUserById(UserId);
+
+                var UserPrefArray = preferences.Split(' ');
+                var ResultGenres = MovieGenres.Intersect(UserPrefArray);
+
                 X = UserPrefArray.Count();
                 
                 var Y = ResultGenres.Count();
