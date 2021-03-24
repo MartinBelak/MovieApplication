@@ -5,6 +5,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using SeleniumTests.Configuration;
+//using SeleniumTests.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;

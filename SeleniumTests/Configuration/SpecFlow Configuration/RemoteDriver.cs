@@ -9,15 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumTests.Configuration
+namespace SeleniumTests.Configuration.SpecFlow_Configuration
 {
-    public class RemoteSetup
+    public class RemoteDriver
     {
         public IWebDriver GetDriverInstance()
-        {           
-            return GetChromeWithCapabilities();            
+        {
+            return GetChromeWithCapabilities();
         }
-        
+
         private IWebDriver GetChromeWithCapabilities()
         {
             ChromeOptions options = new ChromeOptions();
@@ -47,7 +47,7 @@ namespace SeleniumTests.Configuration
             capabilities.AddAdditionalCapability("maxduration", "900", true);
             capabilities.AddAdditionalCapability("key", "40b8966a5560cc990cf5db5abca012fd", true);
             capabilities.AddAdditionalCapability("secret", "50b5af130420f08f89662efa10919a23", true);
-           
+
             var driver = new RemoteWebDriver(new Uri("http://hub.testingbot.com/wd/hub"), capabilities.ToCapabilities(),
             TimeSpan.FromSeconds(1000));
             Console.WriteLine("TestingBotSessionID=" + ((RemoteWebDriver)driver).SessionId.ToString());

@@ -41,7 +41,7 @@ namespace SeleniumTests
             return driver;
         }
 
-        public static IWebDriver LoginUser(this IWebDriver driver, string username, string password)
+        public static  IWebDriver LoginUser(this IWebDriver driver, string username, string password)
         {
             driver.ClearAndSendkeys(By.Id("UserName"), username);
             driver.ClearAndSendkeys(By.Id("Password"), password);

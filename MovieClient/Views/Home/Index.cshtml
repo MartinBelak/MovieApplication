@@ -9,7 +9,7 @@
     {
         var name = isLoggedIn.ToString().Split(',').ElementAt(0);
         var id = int.Parse(isLoggedIn.ToString().Split(',').ElementAt(1));
-        <p>You are logged in as @name</p>
+        <p id="loginMsg">You are logged in as @name</p>
 
         <div class="container">
             <form name="UserModel" method="POST" action="/Home/Logout">

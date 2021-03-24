@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.props" Condition="Exists('..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.props')" />
+  <Import Project="..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.props" Condition="Exists('..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.props')" />
   <Import Project="..\MovieClient\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\MovieClient\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="..\MovieClient\packages\NUnit.3.13.1\build\NUnit.props" Condition="Exists('..\MovieClient\packages\NUnit.3.13.1\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -35,6 +37,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BoDi, Version=1.5.0.0, Culture=neutral, PublicKeyToken=ff7cd5ea2744b496, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\BoDi.1.5.0\lib\net45\BoDi.dll</HintPath>
+    </Reference>
+    <Reference Include="Cucumber.Messages, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b10c5988214f940c, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\Cucumber.Messages.6.0.1\lib\net45\Cucumber.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Gherkin, Version=6.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\Gherkin.6.0.0\lib\net45\Gherkin.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\Google.Protobuf.3.7.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.13.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\MovieClient\packages\NUnit.3.13.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -44,12 +58,27 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\System.Threading.Tasks.Extensions.4.4.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow, Version=3.7.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\SpecFlow.3.7.38\lib\net461\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="TechTalk.SpecFlow.NUnit.SpecFlowPlugin, Version=3.7.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\SpecFlow.NUnit.3.7.38\lib\net461\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27, processorArchitecture=MSIL">
+      <HintPath>..\MovieClient\packages\Utf8Json.1.3.7\lib\net47\Utf8Json.dll</HintPath>
+    </Reference>
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\MovieClient\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
@@ -61,14 +90,32 @@
     <Compile Include="Configuration\BaseTestFixture.cs" />
     <Compile Include="Configuration\RemoteSetup.cs" />
     <Compile Include="Configuration\LogInData.cs" />
+    <Compile Include="Configuration\SpecFlow Configuration\Driver.cs" />
+    <Compile Include="Configuration\SpecFlow Configuration\RemoteDriver.cs" />
+    <Compile Include="Hooks\Hooks.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\MoviesPage.cs" />
+    <Compile Include="Pages\RegisterUserPage.cs" />
+    <Compile Include="Pages\WishlistPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeleniumHelper.cs" />
+    <Compile Include="Helpers\SeleniumHelper.cs" />
     <Compile Include="SeleniumTestMethods.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="SpecFlow TestScenarios\StepDefinitions\AddMovieToWishlistSteps.cs" />
+    <Compile Include="SpecFlow TestScenarios\StepDefinitions\LoginUserSteps.cs" />
+    <Compile Include="SpecFlow TestScenarios\StepDefinitions\RegisterUserSteps.cs" />
+    <Compile Include="SpecFlow TestScenarios\StepDefinitions\RemoveMovieFromWishlistSteps.cs" />
+    <Compile Include="SpecFlow TestScenarios\StepDefinitions\SearchFunctionSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="SpecFlow TestScenarios\FeatureFiles\AddMovieToWishlist.feature" />
+    <None Include="SpecFlow TestScenarios\FeatureFiles\LoginUser.feature" />
+    <None Include="SpecFlow TestScenarios\FeatureFiles\RegisterUser.feature" />
+    <None Include="SpecFlow TestScenarios\FeatureFiles\RemoveMovieFromWishlist.feature" />
+    <None Include="SpecFlow TestScenarios\FeatureFiles\SearchFunction.feature" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MovieClient\MovieClient.csproj">
@@ -76,6 +123,7 @@
       <Name>MovieClient</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\MovieClient\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets" Condition="Exists('..\MovieClient\packages\Selenium.Firefox.WebDriver.0.27.0\build\Selenium.Firefox.WebDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -86,6 +134,14 @@
     <Error Condition="!Exists('..\MovieClient\packages\NUnit.3.13.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\NUnit.3.13.1\build\NUnit.props'))" />
     <Error Condition="!Exists('..\MovieClient\packages\Selenium.WebDriver.ChromeDriver.88.0.4324.9600\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\Selenium.WebDriver.ChromeDriver.88.0.4324.9600\build\Selenium.WebDriver.ChromeDriver.targets'))" />
     <Error Condition="!Exists('..\MovieClient\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props'))" />
+    <Error Condition="!Exists('..\MovieClient\packages\SpecFlow.3.7.38\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\SpecFlow.3.7.38\build\SpecFlow.targets'))" />
+    <Error Condition="!Exists('..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.props')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.props'))" />
+    <Error Condition="!Exists('..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.targets'))" />
+    <Error Condition="!Exists('..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.props'))" />
+    <Error Condition="!Exists('..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.targets'))" />
   </Target>
   <Import Project="..\MovieClient\packages\Selenium.WebDriver.ChromeDriver.88.0.4324.9600\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\MovieClient\packages\Selenium.WebDriver.ChromeDriver.88.0.4324.9600\build\Selenium.WebDriver.ChromeDriver.targets')" />
+  <Import Project="..\MovieClient\packages\SpecFlow.3.7.38\build\SpecFlow.targets" Condition="Exists('..\MovieClient\packages\SpecFlow.3.7.38\build\SpecFlow.targets')" />
+  <Import Project="..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.targets" Condition="Exists('..\MovieClient\packages\SpecFlow.Tools.MsBuild.Generation.3.7.38\build\SpecFlow.Tools.MsBuild.Generation.targets')" />
+  <Import Project="..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.targets" Condition="Exists('..\MovieClient\packages\SpecFlow.NUnit.3.7.38\build\SpecFlow.NUnit.targets')" />
 </Project>

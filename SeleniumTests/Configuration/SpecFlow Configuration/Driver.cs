@@ -2,7 +2,6 @@
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
-namespace SeleniumTests.Configuration
+namespace SeleniumTests.Configuration.SpecFlow_Configuration
 {
-    public class BaseTestFixture : RemoteSetup
+    public class Driver : RemoteDriver
     {
-        protected IWebDriver driver;
-        protected string url = "http://localhost:50260/"; //http://localhost:50069/ , http://localhost:50260/
-        protected string userName;
-        protected string password;
+        protected IWebDriver driver;       
+        private ScenarioContext context;
 
-        [SetUp]
-        public void TestSetup()
+        public Driver(ScenarioContext context)
         {
-            driver = new ChromeDriver(); //for local testing
-            //driver = GetDriverInstance(); //for remote TestingBot
-            driver.Manage().Window.Maximize();
-            driver.Url = url;
+            this.context = context;
         }
 
-        [TearDown]
-        public void TestCleanUp()
+        public IWebDriver Init()
+        {
+            driver = new ChromeDriver();
+            //remote TestingBot driver
+            //driver = GetDriverInstance();
+            return driver;
+        }
+
+        public void CleanUp()
         {
             if (driver is ChromeDriver)
             {
                 driver.Close();
-                
+
             }
             else
             {
@@ -49,7 +49,7 @@ namespace SeleniumTests.Configuration
                     // Terminates the remote webdriver session
                     driver.Quit();
                 }
-            }          
-        }   
+            }
+        }
     }
 }
